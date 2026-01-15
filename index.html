@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlackLine - Premium Anime Action Figures</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset dan Variabel */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #e94560;
+            --light-color: #f0f0f0;
+            --dark-color: #0f0f1a;
+            --text-color: #f1f1f1;
+            --text-secondary: #b8b8b8;
+        }
+        
+        body {
+            background-color: var(--dark-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+        
+        .logo i {
+            color: var(--accent-color);
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1.1rem;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--accent-color);
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .search-box {
+            display: flex;
+            align-items: center;
+            background-color: var(--secondary-color);
+            border-radius: 30px;
+            padding: 8px 15px;
+        }
+        
+        .search-box input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-color);
+            width: 200px;
+        }
+        
+        .search-box button {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+        
+        .cart-icon, .user-icon {
+            color: var(--text-color);
+            font-size: 1.3rem;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent-color);
+            color: white;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(10, 10, 20, 0.8), rgba(10, 10, 20, 0.9)), url('https://images.unsplash.com/photo-1639322537228-f710d846310a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--text-secondary);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #d62e4a;
+            transform: translateY(-3px);
+        }
+        
+        /* Produk Section */
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+            font-size: 2.2rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .filter-btn {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .product-card {
+            background-color: var(--primary-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .product-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--accent-color);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-category {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        
+        .product-name {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            height: 60px;
+            overflow: hidden;
+        }
+        
+        .product-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            height: 60px;
+            overflow: hidden;
+        }
+        
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+        
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .add-to-cart {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #d62e4a;
+        }
+        
+        .favorite-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .favorite-btn:hover {
+            color: var(--accent-color);
+        }
+        
+        /* About Section */
+        .about {
+            background-color: var(--secondary-color);
+            padding: 80px 0;
+        }
+        
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-img {
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .about-content {
+            width: 50%;
+        }
+        
+        .about h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .about p {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .footer-column p, .footer-column a {
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: var(--accent-color);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            color: var(--text-color);
+            transition: background-color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsiveness */
+        @media (max-width: 992px) {
+            .about-container {
+                flex-direction: column;
+            }
+            
+            .about-img, .about-content {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-menu {
+                gap: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .search-box input {
+                width: 150px;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-buttons {
+                gap: 10px;
+            }
+            
+            .filter-btn {
+                padding: 6px 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-robot"></i>
+                Black<span>Line</span>
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#products">Produk</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+            
+            <div class="header-actions">
+                <div class="search-box">
+                    <input type="text" placeholder="Cari action figure...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="user-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">3</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Premium Anime Action Figures</h1>
+            <p>Koleksi action figure anime berkualitas tinggi untuk kolektor dewasa. Temukan figur favorit Anda dari berbagai seri anime populer dengan detail dan kualitas terbaik.</p>
+            <a href="#products" class="cta-button">Jelajahi Koleksi</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="container">
+        <h2 class="section-title">Koleksi Eksklusif</h2>
+        
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">Semua</button>
+            <button class="filter-btn" data-filter="shonen">Shonen</button>
+            <button class="filter-btn" data-filter="seinen">Seinen</button>
+            <button class="filter-btn" data-filter="limited">Edisi Terbatas</button>
+            <button class="filter-btn" data-filter="scale">Scale Figures</button>
+        </div>
+        
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card" data-category="shonen">
+                <img src="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Goku Masterpiece Figure" class="product-img">
+                <div class="product-info">
+                    <div class="product-category">Shonen • Dragon Ball</div>
+                    <h3 class="product-name">Son Goku Ultra Instinct - Masterpiece Edition</h3>
+                    <p class="product-description">Figur 1/6 scale dengan detail menakjubkan, LED effect, dan ekspresi wajah yang dapat diganti.</p>
+                    <div class="product-price">Rp 2.850.000</div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">Tambah ke Keranjang</button>
+                        <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card" data-category="seinen">
+                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ghost in the Shell Motoko" class="product-img">
+                <div class="product-info">
+                    <div class="product-category">Seinen • Ghost in the Shell</div>
+                    <h3 class="product-name">Motoko Kusanagi - Cybernetic Ver.</h3>
+                    <p class="product-description">Figur dengan bagian mekanik yang dapat dilepas, pose dinamis, dan base dengan efek cahaya neon.</p>
+                    <div class="product-price">Rp 3.250.000</div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">Tambah ke Keranjang</button>
+                        <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card" data-category="limited">
+                <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Attack on Titan Levi" class="product-img">
+                <div class="product-info">
+                    <div class="product-category">Limited Edition • Attack on Titan</div>
+                    <h3 class="product-name">Levi Ackerman - Thunder Spear Battle Ver.</h3>
+                    <p class="product-description">Edisi terbatas dengan hanya 1000 unit di seluruh dunia. Dilengkapi dengan ODM gear yang dapat diposisikan.</p>
+                    <div class="product-price">Rp 4.500.000</div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">Tambah ke Keranjang</button>
+                        <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-card" data-category="scale">
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="One Piece Luffy Gear 5" class="product-img">
+                <div class="product-info">
+                    <div class="product-category">Scale Figures • One Piece</div>
+                    <h3 class="product-name">Monkey D. Luffy - Gear 5 Awakening</h3>
+                    <p class="product-description">Figur 1/4 scale dengan efek khusus cloud dan senyuman ikonik. Tinggi 45cm dengan base yang sangat detail.</p>
+                    <div class="product-price">Rp 5.200.000</div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">Tambah ke Keranjang</button>
+                        <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 5 -->
+            <div class="product-card" data-category="seinen">
+                <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Berserk Guts" class="product-img">
+                <div class="product-info">
+                    <div class="product-category">Seinen • Berserk</div>
+                    <h3 class="product-name">Guts - Berserker Armor Black Swordsman</h3>
+                    <p class="product-description">Figur dengan armor yang dapat dilepas, Dragonslayer sword, dan efek darah yang realistis. Tinggi 30cm.</p>
+                    <div class="product-price">Rp 3.750.000</div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">Tambah ke Keranjang</button>
+                        <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 6 -->
+            <div class="product-card" data-category="shonen">
+                <img src="https://images.unsplash.com/photo-1560169897-fc0cdbdfa4d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Naruto Sage Mode" class="product-img">
+                <div class="product-info">
+                    <div class="product-category">Shonen • Naruto</div>
+                    <h3 class="product-name">Naruto Uzumaki - Sage Mode Final Valley</h3>
+                    <p class="product-description">Figur dengan efek Rasenshuriken yang transparan, cloak yang dapat dilepas, dan base berbentuk batu.</p>
+                    <div class="product-price">Rp 2.950.000</div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">Tambah ke Keranjang</button>
+                        <button class="favorite-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container about-container">
+            <img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tentang BlackLine" class="about-img">
+            <div class="about-content">
+                <h2>Tentang BlackLine</h2>
+                <p>BlackLine didirikan pada tahun 2015 dengan misi untuk menyediakan action figure anime berkualitas tinggi untuk kolektor dewasa. Kami memahami bahwa bagi kolektor sejati, kualitas dan detail adalah segalanya.</p>
+                <p>Setiap produk yang kami tawarkan melalui proses kurasi ketat untuk memastikan hanya yang terbaik yang sampai ke tangan Anda. Kami bekerja langsung dengan produsen terpercaya dan seniman ternama untuk menghadirkan figur dengan detail mengagumkan.</p>
+                <p>Dari edisi terbatas hingga scale figures eksklusif, BlackLine menjadi destinasi utama bagi kolektor action figure anime di Indonesia dan Asia Tenggara.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>BlackLine</h3>
+                    <p>Premium anime action figures untuk kolektor dewasa. Kualitas terbaik, detail sempurna, kepuasan terjamin.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Tautan Cepat</h3>
+                    <a href="#home">Beranda</a>
+                    <a href="#products">Produk</a>
+                    <a href="#about">Tentang Kami</a>
+                    <a href="#">Syarat & Ketentuan</a>
+                    <a href="#">Kebijakan Privasi</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Kategori Produk</h3>
+                    <a href="#">Shonen Action Figures</a>
+                    <a href="#">Seinen Collection</a>
+                    <a href="#">Edisi Terbatas</a>
+                    <a href="#">Scale Figures</a>
+                    <a href="#">Pre-order Terbaru</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Kontak Kami</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Action Figure No. 15, Jakarta</p>
+                    <p><i class="fas fa-phone"></i> (021) 1234-5678</p>
+                    <p><i class="fas fa-envelope"></i> info@blackline.co.id</p>
+                    <p><i class="fas fa-clock"></i> Senin - Jumat: 9:00 - 17:00</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 BlackLine - Premium Anime Action Figures. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Filter produk berdasarkan kategori
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const productCards = document.querySelectorAll('.product-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Hapus class active dari semua button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Tambah class active ke button yang diklik
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Filter produk
+                    productCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Add to cart functionality
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            const cartCount = document.querySelector('.cart-count');
+            let count = 3;
+            
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    count++;
+                    cartCount.textContent = count;
+                    
+                    // Animasi feedback
+                    this.textContent = 'Ditambahkan!';
+                    this.style.backgroundColor = '#2ecc71';
+                    
+                    setTimeout(() => {
+                        this.textContent = 'Tambah ke Keranjang';
+                        this.style.backgroundColor = '';
+                    }, 1500);
+                });
+            });
+            
+            // Favorite button functionality
+            const favoriteButtons = document.querySelectorAll('.favorite-btn');
+            
+            favoriteButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const icon = this.querySelector('i');
+                    
+                    if (icon.classList.contains('far')) {
+                        icon.classList.remove('far');
+                        icon.classList.add('fas');
+                        icon.style.color = '#e94560';
+                    } else {
+                        icon.classList.remove('fas');
+                        icon.classList.add('far');
+                        icon.style.color = '';
+                    }
+                });
+            });
+            
+            // Smooth scroll untuk navigasi
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
